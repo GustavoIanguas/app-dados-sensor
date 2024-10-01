@@ -1,1 +1,0 @@
-# app-dados-sensor
