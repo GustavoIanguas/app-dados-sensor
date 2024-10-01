@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Picker } from 'react-native';
+import { View, Text, StyleSheet, Picker, ScrollView } from 'react-native';
 import { Line, Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 
@@ -79,19 +79,62 @@ export default function GraphScreen({ route }) {
     },
   };
 
+  const data_umi = {
+    labels: sensorData.map(item => new Date(item.timestamp).toLocaleTimeString()),
+    datasets: [
+      {
+        label: 'Umidade',
+        data: sensorData.map(item => item.umidade),
+        borderColor: 'rgba(20, 192, 100, 1)',
+        fill: false,
+        tension: 0.1,
+      },
+    ],
+  };
+
+  const options_umi = {
+    responsive: true,
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Tempo',
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Umidade (%)',
+        },
+        beginAtZero: true,
+      },
+    },
+  };
+
   const renderChart = () => {
     switch (chartType) {
       case 'line':
-        return <Line data={data} options={options} />;
+        return <Line data={data} options={options} width={350} height={200} />;
       case 'bar':
-        return <Bar data={data} options={options} />;
+        return <Bar data={data} options={options} width={350} height={200} />;
       default:
-        return <Line data={data} options={options} />;
+        return <Line data={data} options={options} width={350} height={200} />;
+    }
+  };
+
+  const renderChartUmi = () => {
+    switch (chartType) {
+      case 'line':
+        return <Line data={data_umi} options={options_umi} width={350} height={200} />;
+      case 'bar':
+        return <Bar data={data_umi} options={options_umi} width={350} height={200} />;
+      default:
+        return <Line data={data_umi} options={options_umi} width={350} height={200} />;
     }
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Gráfico de Dados dos Sensores</Text>
       <Picker
         selectedValue={timeRange}
@@ -113,14 +156,26 @@ export default function GraphScreen({ route }) {
         <Picker.Item label="Linha" value="line" />
         <Picker.Item label="Barra" value="bar" />
       </Picker>
-      {renderChart()}
-    </View>
+      <View style={styles.chartContainer}>
+        {renderChart()}
+      </View>
+      <View style={styles.chartContainer}>
+        {renderChartUmi()}
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'flex-start', alignItems: 'flex-end', padding: 20 },
+  container: { flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 20 },
   title: { fontSize: 18, marginBottom: 10 },
   picker: { height: 40, width: 150, marginBottom: 20, borderColor: '#ccc', borderWidth: 1, borderRadius: 5 },
   pickerItem: { height: 40 },
+  chartContainer: {
+    marginBottom: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 350,
+    width: 800
+  },
 });
