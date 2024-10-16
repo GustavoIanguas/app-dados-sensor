@@ -79,37 +79,37 @@ export default function GraphScreen({ route }) {
     },
   };
 
-  const data_umi = {
-    labels: sensorData.map(item => new Date(item.timestamp).toLocaleTimeString()),
-    datasets: [
-      {
-        label: 'Umidade',
-        data: sensorData.map(item => item.umidade),
-        borderColor: 'rgba(20, 192, 100, 1)',
-        fill: false,
-        tension: 0.1,
-      },
-    ],
-  };
+  // const data_umi = {
+  //   labels: sensorData.map(item => new Date(item.timestamp).toLocaleTimeString()),
+  //   datasets: [
+  //     {
+  //       label: 'Umidade',
+  //       data: sensorData.map(item => item.umidade),
+  //       borderColor: 'rgba(20, 192, 100, 1)',
+  //       fill: false,
+  //       tension: 0.1,
+  //     },
+  //   ],
+  // };
 
-  const options_umi = {
-    responsive: true,
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: 'Tempo',
-        },
-      },
-      y: {
-        title: {
-          display: true,
-          text: 'Umidade (%)',
-        },
-        beginAtZero: true,
-      },
-    },
-  };
+  // const options_umi = {
+  //   responsive: true,
+  //   scales: {
+  //     x: {
+  //       title: {
+  //         display: true,
+  //         text: 'Tempo',
+  //       },
+  //     },
+  //     y: {
+  //       title: {
+  //         display: true,
+  //         text: 'Umidade (%)',
+  //       },
+  //       beginAtZero: true,
+  //     },
+  //   },
+  // };
 
   const renderChart = () => {
     switch (chartType) {
@@ -122,16 +122,16 @@ export default function GraphScreen({ route }) {
     }
   };
 
-  const renderChartUmi = () => {
-    switch (chartType) {
-      case 'line':
-        return <Line data={data_umi} options={options_umi} width={350} height={200} />;
-      case 'bar':
-        return <Bar data={data_umi} options={options_umi} width={350} height={200} />;
-      default:
-        return <Line data={data_umi} options={options_umi} width={350} height={200} />;
-    }
-  };
+  // const renderChartUmi = () => {
+  //   switch (chartType) {
+  //     case 'line':
+  //       return <Line data={data_umi} options={options_umi} width={350} height={200} />;
+  //     case 'bar':
+  //       return <Bar data={data_umi} options={options_umi} width={350} height={200} />;
+  //     default:
+  //       return <Line data={data_umi} options={options_umi} width={350} height={200} />;
+  //   }
+  // };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -159,9 +159,9 @@ export default function GraphScreen({ route }) {
       <View style={styles.chartContainer}>
         {renderChart()}
       </View>
-      <View style={styles.chartContainer}>
+      {/* <View style={styles.chartContainer}>
         {renderChartUmi()}
-      </View>
+      </View> */}
     </ScrollView>
   );
 }
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 350,
-    width: 800
+    height: 800,
+    width: 1800
   },
 });
