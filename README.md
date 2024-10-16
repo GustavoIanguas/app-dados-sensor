@@ -3,7 +3,7 @@
 ## Integrantes
 
 ### Gustavo Ianguas - RM551362 - [repo](https://github.com/GustavoIanguas/app-dados-sensor) <br/>
-### Cauã Rodrigues - RM551893 - [repo](https://github.com/cauarpmarques/app-dados-sensor) <br/>
+### Cauã Rodrigues - RM551893 - [repo](https://github.com/cauarpmarques/app-dados-sensores) <br/>
 ### Pedro Plácido - RM98219 - [repo](https://github.com/zPlacd/app-dados-sensor) <br/>
 ### Fabrio Santos - RM552592 - [repo](https://github.com/Fabriciozil/app-dados-sensor) <br/>
 
